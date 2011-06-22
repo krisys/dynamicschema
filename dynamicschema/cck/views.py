@@ -93,7 +93,7 @@ def edit_record(request, id):
                     setattr(keyvalue, 'value_date', form.cleaned_data[attribute.name])
 
 
-            if _attribute.datatype == 'Boolean' :
+            if attribute.datatype == 'Boolean' :
                 if len(keyvalue) == 0:
                     KeyValueStore.objects.create(record = record,
                                                  attribute = attribute, 
