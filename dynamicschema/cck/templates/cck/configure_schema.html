@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="content">
+	<p> Configure {{schema.name}} </p>
+	{{message}}
+	<form action="" method="POST"> {% csrf_token %}
+
+	<table>
+		{{formset}}
+	</table>
+
+    <input type="submit" class="button" value="Save Configuration"/>
+	{{formset.management_form}}
+	</form>
+</div>
+{% endblock %}
+

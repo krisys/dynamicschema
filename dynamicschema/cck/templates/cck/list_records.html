@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+<strong>Records - {{schema.name}} </strong>
+<br><br>
+
+<div>
+
+<table>
+	<tr>
+		<th>Sl No</th>
+		{% for attrib in attribs %}
+			{% if not attrib.is_hidden %}
+				<th>{{attrib.label}}</th>
+			{% endif %}
+		{% endfor %}
+	</tr>
+	{% for record in records.object_list %}
+		<tr>
+			<td><a href="{% url cck.views.view_record record.0.id %}">{{records.start_index|add:forloop.counter0}}</a></td>
+			{% for relItems in record.1%}
+				<td>
+					{% if relItems.attribute.datatype == 'String' %}
+						{{relItems.value_text}}
+					{% endif %}
+
+					{% if relItems.attribute.datatype == 'Text' %}
+						{{relItems.value_text}}
+					{% endif %}
+				
+					{% if relItems.attribute.datatype ==  'Float' %}
+						{{ relItems.value_float}} 
+					{% endif %}
+
+					{% if relItems.attribute.datatype ==  'Integer' %}
+						{{ relItems.value_float|floatformat:-1}} 
+					{% endif %}
+					
+					{% if relItems.attribute.datatype == 'Date' %}
+						{{relItems.value_date}} 
+					{% endif %}
+				</td>
+			{% endfor %}
+		</tr>
+	{% endfor %}
+<table>
+</div>
+<br />
+<div>
+    <span>
+        {% if records.has_previous %}
+            <a href="?page={{ records.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span>
+            Page {{ records.number }} of {{ records.paginator.num_pages }}.
+        </span>
+
+        {% if records.has_next %}
+            <a href="?page={{ records.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}
+

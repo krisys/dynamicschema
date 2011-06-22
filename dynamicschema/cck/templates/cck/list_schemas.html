@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<table>
+{% for schema in schema_list %}
+    <tr>
+        <td> {{forloop.counter}} </td>
+        <td> {{schema}} </td>
+        <td> <a href="{% url cck.views.list_records schema.id %}"> List Records </td>
+        <td> <a href="{% url cck.views.create_record schema.id %}"> Create Record </td>
+        <td> <a href="{% url cck.views.configure_schema schema.id %}"> Configure </td>
+    </tr>
+{% endfor %}
+
+</table>
+<br/>
+<a href="/admin/cck/schema/add/">Add schema (via django admin) </a>
+{% endblock %}

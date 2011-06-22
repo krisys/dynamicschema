@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+
+{% block style %}
+<style type="text/css">
+
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+<strong> Record Details</strong>
+<br><br>
+<div> 
+
+
+<table> 
+	<tr>
+		<th colspan="2">Details</th>
+	</tr>
+	{% for field in record %}
+		<tr>
+			<td>{{field.attribute.label}}</td>
+			<td>
+				{% if field.attribute.datatype == 'String' %}
+					{{field.value_text}}
+				{% endif %}
+
+				{% if field.attribute.datatype == 'Text' %}
+					{{field.value_text}}
+				{% endif %}
+			
+				{% if field.attribute.datatype ==  'Float' %}
+					{{ field.value_float}} 
+				{% endif %}
+
+				{% if field.attribute.datatype ==  'Integer' %}
+					{{ field.value_float|floatformat:-1}} 
+				{% endif %}
+			
+				{% if field.attribute.datatype == 'Date' %}
+					{{field.value_date}} 
+				{% endif %}
+			</td>
+		</tr>
+	{% endfor %}
+<table>
+</div>
+{% endblock %}
+

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+	<p> Add {{schema.name}} </p>
+	{{message}}
+	<form id="myForm" action="" method="POST"> {% csrf_token %}
+	<table>
+		{{form}}
+		<tr align="center"><td colspan="2" align="right"><input type="submit" class="button" value="Add Data"/></td></tr>
+	</table>
+	</form>
+</div>
+{% endblock %}
+
