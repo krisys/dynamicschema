@@ -1,0 +1,4 @@
+dynamicschema
+-------------
+
+This example demonstrates how one can use a EAV (Entity attribute value) approach to create schemas and perform CRUD operations on the added schema without altering the database tables.
