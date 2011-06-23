@@ -19,7 +19,7 @@ def create_record(request, id):
 
     if form.is_valid():
         record_instance = Record.objects.create(record_type=schema)
-        attributes = Attribute.objects.filter(schema=schema).
+        attributes = Attribute.objects.filter(schema=schema)
         attributes = attributes.exclude(hidden_field=True)
 
         for attribute in attributes:
@@ -123,7 +123,7 @@ def edit_record(request, id):
 
 def configure_schema(request, id):
     schema = Schema.objects.get(id=id)
-    attributes = Attribute.objects.filter(schema=schema).
+    attributes = Attribute.objects.filter(schema=schema)
     attributes = attributes.order_by('field_order')
 
     formset = ConfigureSchemaFormset(request.POST or None,
